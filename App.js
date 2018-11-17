@@ -14,7 +14,7 @@ import ReviewScreen from './screens/ReviewScreen'
 
 const MainNavigator = createBottomTabNavigator({
   Welcome: { screen: WelcomeScreen },
-  Auth: { screen: AuthScreen },
+  auth: { screen: AuthScreen },
   main: {
     screen: createBottomTabNavigator({
       map: { screen: MapScreen },
