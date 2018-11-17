@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
 
-export default class AuthScreen extends Component {
+const hoc = c => {
+  return connect(null, actions)(c)
+}
+
+export default hoc(class AuthScreen extends Component {
+  componentWillMount() {
+    this.props.facebookLogin()
+  }
   render() {
     return (
       <View>
@@ -9,4 +18,4 @@ export default class AuthScreen extends Component {
       </View>
     )
   }
-}
+})
