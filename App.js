@@ -4,6 +4,9 @@ import {
   createBottomTabNavigator,
   createStackNavigator,
 } from 'react-navigation'
+import { Provider } from 'react-redux'
+
+import store from './store'
 
 import AuthScreen from './screens/AuthScreen'
 import WelcomeScreen from './screens/WelcomeScreen'
@@ -32,9 +35,11 @@ const MainNavigator = createBottomTabNavigator({
 export default class App extends PureComponent {
   render() {
     return (
-      <View style={styles.container}>
-        <MainNavigator />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <MainNavigator />
+        </View>
+      </Provider>
     )
   }
 }
