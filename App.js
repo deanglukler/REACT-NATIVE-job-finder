@@ -11,6 +11,7 @@ import MapScreen from './screens/MapScreen'
 import DeckScreen from './screens/DeckScreen'
 import SettingsScreen from './screens/SettingsScreen'
 import ReviewScreen from './screens/ReviewScreen'
+
 const MainNavigator = createBottomTabNavigator({
   Welcome: { screen: WelcomeScreen },
   Auth: { screen: AuthScreen },
@@ -20,8 +21,8 @@ const MainNavigator = createBottomTabNavigator({
       deck: { screen: DeckScreen },
       review: {
         screen: createStackNavigator({
-          settings: { screen: SettingsScreen },
           review: { screen: ReviewScreen },
+          settings: { screen: SettingsScreen },
         }),
       },
     }),
