@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, AsyncStorage } from 'react-native'
+import { AppLoading } from 'expo'
+import _ from 'lodash'
 
 import Slides from '../components/Slides'
 
@@ -10,11 +12,30 @@ const SLIDES = [
 ]
 
 export default class WelcomeScreen extends Component {
+  state = {
+    token: null,
+  }
+
+  async componentDidMount() {
+    let token = await AsyncStorage.getItem('fb_token')
+
+    if (token) {
+      this.setState({ token: true })
+      this.props.navigation.navigate('map')
+    } else {
+      this.setState({ token: false })
+    }
+  }
+
   handleSlidesComplete = () => {
     this.props.navigation.navigate('auth')
   }
 
   render() {
+    if (_.isNull(this.state.token)) {
+      return <AppLoading />
+    }
+
     return <Slides data={SLIDES} onComplete={this.handleSlidesComplete} />
   }
 }
