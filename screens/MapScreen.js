@@ -36,7 +36,10 @@ export default hoc(
     };
 
     onSearchArea = () => {
-      this.props.fetchJobs(this.state.region)
+      this.props.fetchJobs(this.state.region, () => {
+        // after we fetch jobs.. we'd lie to show available jobs in the deck component
+        this.props.navigation.navigate('deck')
+      })
     }
 
     render() {

@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
+import { connect } from 'react-redux'
 
-export default class DeckScreen extends Component {
+const mapState = ({ jobs }) => {
+  return {
+    jobs: jobs.results,
+  }
+}
+
+const hoc = c => connect(mapState)(c)
+
+export default hoc(class DeckScreen extends Component {
   render() {
     return (
       <View>
@@ -9,4 +18,4 @@ export default class DeckScreen extends Component {
       </View>
     )
   }
-}
+})

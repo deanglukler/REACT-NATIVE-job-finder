@@ -19,13 +19,14 @@ const buildJobUrl = zip => {
   return `${JOB_ROUTE}${query}`
 }
 
-export const fetchJobs = region => async dispatch => {
+export const fetchJobs = (region, callback) => async dispatch => {
   // turn the lat and lng into a zip code
   try {
-    let zip = await reverseGeocode(region);
-    // fake without an api key
+    // fake it.. or deal with getting the appropriate api keys
+    // let zip = await reverseGeocode(region);
     // let { data } = await axios.get(buildJobUrl(zip))
     dispatch({ type: FETCH_JOBS, payload: FAKE_DATA })
+    callback()
   } catch (err) {
     console.log(err);
   }
