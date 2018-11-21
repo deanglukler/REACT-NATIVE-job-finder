@@ -15,7 +15,7 @@ import DeckScreen from "./screens/DeckScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import ReviewScreen from "./screens/ReviewScreen";
 
-const MainNavigator = createBottomTabNavigator(
+const MainNavigator = createStackNavigator(
   {
     Welcome: { screen: WelcomeScreen },
     auth: { screen: AuthScreen },
@@ -31,6 +31,9 @@ const MainNavigator = createBottomTabNavigator(
         }
       })
     }
+  },
+  {
+    headerMode: 'none',
   }
 );
 
