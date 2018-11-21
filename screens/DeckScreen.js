@@ -5,7 +5,7 @@ import { MapView } from "expo";
 import { Card, Button } from "react-native-elements";
 
 import Swipe from "../components/Swipe";
-import * as actions from '../actions'
+import * as actions from "../actions";
 
 const mapState = ({ jobs }) => {
   return {
@@ -13,7 +13,11 @@ const mapState = ({ jobs }) => {
   };
 };
 
-const hoc = c => connect(mapState, actions)(c);
+const hoc = c =>
+  connect(
+    mapState,
+    actions
+  )(c);
 
 export default hoc(
   class DeckScreen extends Component {
@@ -46,8 +50,20 @@ export default hoc(
       );
     }
 
-    renderNoMoreCards() {
-      return <Card title="No more cards" />;
+    renderNoMoreCards = () => {
+      return (
+        <Card title="No More Jobs">
+          <Button
+            title="Back to Map"
+            large
+            icon={{ name: "my-location" }}
+            backgroundColor="#03a9f4"
+            onPress={() => {
+              this.props.navigation.navigate("map");
+            }}
+          />
+        </Card>
+      );
     }
 
     render() {
@@ -58,8 +74,8 @@ export default hoc(
             data={this.props.jobs}
             renderCard={this.renderCard}
             renderNoMoreCards={this.renderNoMoreCards}
-            onSwipeRight={(job) => {
-              this.props.likeJob(job)
+            onSwipeRight={job => {
+              this.props.likeJob(job);
             }}
           />
         </View>
