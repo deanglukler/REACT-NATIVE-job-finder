@@ -30,6 +30,8 @@ const MainNavigator = createStackNavigator(
               review: { screen: ReviewScreen },
               settings: { screen: SettingsScreen }
             }),
+            // this is primarily an android compatibility setting
+            tabBarPosition: 'bottom',
             // Optional: Override the `navigationOptions` for the screen
             // Note this fixed not being ableto set the title in the ReviewScreen component
             navigationOptions: () => ({

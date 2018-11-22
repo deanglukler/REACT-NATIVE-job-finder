@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, Platform } from "react-native";
 import { connect } from 'react-redux'
 import { Button } from 'react-native-elements'
 
@@ -12,6 +12,13 @@ const hoc = c =>
   )(c);
 
 export default hoc(class SettingsScreen extends Component {
+  static navigationOptions = () => ({
+    headerTitle: "Review Settings",
+    headerStyle: {
+      // the hdeader overllaps the clear button on aundroid
+      marginTop: Platform.OS === 'android' ? 25 : 0,
+    }
+  })
   render() {
     return (
       <View>
