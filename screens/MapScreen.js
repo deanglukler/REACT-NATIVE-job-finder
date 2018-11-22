@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text, View, ActivityIndicator } from "react-native";
 import { MapView } from "expo";
 import { connect } from "react-redux";
-import { Button } from "react-native-elements";
+import { Button, Icon } from "react-native-elements";
 
 import * as actions from "../actions";
 
@@ -14,6 +14,12 @@ const hoc = c =>
 
 export default hoc(
   class MapScreen extends Component {
+    static navigationOptions = () => ({
+      title: 'Map',
+      // tabBarIcon gives up nice props to help display tings, like tint color (which is blue in IOS)
+      tabBarIcon: ({ tintColor }) => <Icon name="my-location" size={30} color={tintColor}/>,
+    })
+    
     state = {
       // mapLoaded is a work around for android systems that don't render correctly on load
       mapLoaded: false,

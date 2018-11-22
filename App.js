@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Icon } from "react-native-elements";
 import {
   createBottomTabNavigator,
   createStackNavigator
@@ -20,20 +21,37 @@ const MainNavigator = createStackNavigator(
     Welcome: { screen: WelcomeScreen },
     auth: { screen: AuthScreen },
     main: {
-      screen: createBottomTabNavigator({
-        map: { screen: MapScreen },
-        deck: { screen: DeckScreen },
-        review: {
-          screen: createStackNavigator({
-            review: { screen: ReviewScreen },
-            settings: { screen: SettingsScreen }
-          })
+      screen: createBottomTabNavigator(
+        {
+          map: { screen: MapScreen },
+          deck: { screen: DeckScreen },
+          review: {
+            screen: createStackNavigator({
+              review: { screen: ReviewScreen },
+              settings: { screen: SettingsScreen }
+            }),
+            // Optional: Override the `navigationOptions` for the screen
+            // Note this fixed not being ableto set the title in the ReviewScreen component
+            navigationOptions: () => ({
+              title: "Review",
+              tabBarIcon: ({ tintColor }) => (
+                <Icon name="favorite" size={30} color={tintColor} />
+              )
+            })
+          }
+        },
+        {
+          tabBarOptions: {
+            labelStyle: {
+              fontSize: 12
+            }
+          }
         }
-      })
+      )
     }
   },
   {
-    headerMode: 'none',
+    headerMode: "none"
   }
 );
 

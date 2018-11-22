@@ -4,7 +4,7 @@ import { Text, View, ScrollView, Linking, Platform } from "react-native";
 import { connect } from "react-redux";
 import { MapView } from "expo";
 
-import { Button, Card } from "react-native-elements";
+import { Button, Card, Icon } from "react-native-elements";
 
 const mapState = state => {
   return {
@@ -18,7 +18,6 @@ export default hoc(
   class ReviewScreen extends Component {
     // use a funtion to interact with site navition
     static navigationOptions = ({ navigation }) => ({
-      title: "Review Screen", // config the header title
       headerRight: (
         <Button
           title="Settings"
@@ -27,7 +26,7 @@ export default hoc(
           color="rgba(0, 122, 255, 1)"
         />
       )
-    });
+    })
 
     renderLikedJobs() {
       return this.props.likedJobs.map(job => {

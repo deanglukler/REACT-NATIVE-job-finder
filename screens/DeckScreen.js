@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text, View, Platform } from "react-native";
 import { connect } from "react-redux";
 import { MapView } from "expo";
-import { Card, Button } from "react-native-elements";
+import { Card, Button, Icon } from "react-native-elements";
 
 import Swipe from "../components/Swipe";
 import * as actions from "../actions";
@@ -21,6 +21,11 @@ const hoc = c =>
 
 export default hoc(
   class DeckScreen extends Component {
+    static navigationOptions = () => ({
+      title: 'Deck',
+      tabBarIcon: ({ tintColor }) => <Icon name="description" size={30} color={tintColor}/>,
+    })
+    
     renderCard(job) {
       const initialRegion = {
         longitude: job.longitude,
